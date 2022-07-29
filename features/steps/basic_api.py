@@ -26,7 +26,8 @@ def step_impl(context):
 
 @then('the request should finish in under {secs} seconds')
 def step_impl(context, secs):
-    assert context.response.elapsed.total_seconds() < float(secs)
+    elapsed = context.response.elapsed.total_seconds()
+    assert elapsed < float(secs), f"response took {elapsed} seconds"
 
 
 @given('I request the server time')
